@@ -99,6 +99,12 @@
     background: #fff;
   }
   .ads-carousel-wrap.hidden { display: none; }
+  .balance-banner{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:16px;padding:16px 18px;margin:14px 16px 10px;box-shadow:0 8px 20px -6px var(--accent-soft);position:relative;overflow:hidden;}
+  .balance-banner::after{content:'';position:absolute;top:-30px;left:-30px;width:110px;height:110px;background:rgba(255,255,255,0.08);border-radius:50%;}
+  .balance-banner-info{display:flex;flex-direction:column;gap:4px;z-index:1;}
+  .balance-banner-label{font-size:12.5px;color:rgba(255,255,255,0.85);font-weight:600;display:flex;align-items:center;gap:6px;}
+  .balance-banner-value{font-size:24px;font-weight:800;color:#fff;letter-spacing:0.3px;}
+  .balance-banner-icon{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;z-index:1;}
   .points-banner{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);border-radius:16px;padding:14px 16px;margin:14px 16px 4px;}
   .points-banner-info{display:flex;flex-direction:column;gap:2px;}
   .points-banner-label{font-size:12px;color:var(--muted);}
@@ -649,6 +655,13 @@
         <div class="ads-track" id="adsTrack"></div>
         <div class="ads-dots" id="adsDots"></div>
       </div>
+    </div>
+    <div class="balance-banner">
+      <div class="balance-banner-info">
+        <span class="balance-banner-label"><i class="fas fa-wallet"></i> الرصيد الحالي</span>
+        <span class="balance-banner-value" id="homeWalletValue">0 د.ع</span>
+      </div>
+      <div class="balance-banner-icon"><i class="fas fa-coins"></i></div>
     </div>
     <div class="points-banner">
       <div class="points-banner-info">
@@ -1348,6 +1361,8 @@ function renderProfile(user) {
   document.getElementById('profilePoints').textContent = Number(user.points || 0).toLocaleString('en-US', { minimumFractionDigits: 0 }) + ' نقطة';
   const homePointsEl = document.getElementById('homePointsValue');
   if (homePointsEl) homePointsEl.textContent = Number(user.points || 0).toLocaleString('en-US', { minimumFractionDigits: 0 });
+  const homeWalletEl = document.getElementById('homeWalletValue');
+  if (homeWalletEl) homeWalletEl.textContent = Number(user.wallet || 0).toLocaleString('en-US', { minimumFractionDigits: 0 }) + ' د.ع';
 }
 function copyProfileId() {
   const idText = document.getElementById('profileId').textContent;
