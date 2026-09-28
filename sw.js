@@ -1,8 +1,8 @@
-const CACHE='filscash-v1';
-const FILES=['./','index.html','offline.png'];
+const CACHE='filscash-v2';
+const FILES=['./','index.html'];
 
 self.addEventListener('install',e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));
+  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).catch(()=>{}));
   self.skipWaiting();
 });
 self.addEventListener('activate',e=>{
